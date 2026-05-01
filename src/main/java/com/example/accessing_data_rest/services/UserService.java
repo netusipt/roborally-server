@@ -18,7 +18,7 @@ public class UserService {
         //      from the userRepository and return the result (instead
         //      the empty list below).
 
-        return List.of();
+        return userRepository.findByName(name);
     }
 
 }

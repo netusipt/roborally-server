@@ -2,6 +2,7 @@ package com.example.accessing_data_rest.controllers;
 
 import com.example.accessing_data_rest.model.Game;
 
+import com.example.accessing_data_rest.model.User;
 import com.example.accessing_data_rest.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,19 @@ public class GameController {
     //      a list of all games from the games repository  (via the service
     //      getGames) and returns this list (in JSON representation).
     //      See class UserController for inspiration and class GameService
+    @GetMapping(value = "", produces="application/json")
+    public List<Game> getGames() {
+        return gameService.getGames();
+    }
+
 
     // TODO Assignment 7b: Create a post method in this controller for creating a new game
     //      this method should call the corresponding service for creating a game
+    @PostMapping(value = "/create")
+    public Game createGame(@RequestBody Game game) {
+        return gameService.createGame(game);
+    }
+
 
     // TODO Assignment 7d: Create a method and @RequestMpping for deleting a game
 
