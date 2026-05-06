@@ -35,6 +35,16 @@ public class GameController {
 
 
     // TODO Assignment 7d: Create a method and @RequestMpping for deleting a game
+    @DeleteMapping(value = "{id}")
+    public void deleteGame(@PathVariable("id") long gameUid) {
+        gameService.deleteGame(gameUid);
+    }
+
+    // Assignment 7e: PATCH endpoint to update a game (used to switch state to ACTIVE)
+    @PatchMapping(value = "{id}", consumes = "application/json", produces = "application/json")
+    public Game updateGame(@PathVariable("id") long gameUid, @RequestBody Game patch) {
+        return gameService.updateGame(gameUid, patch);
+    }
 
     // TODO Assignment 7c-7e: At some point you might want to implement an
     //      endpoint for obtaining open games (open for joining) only or

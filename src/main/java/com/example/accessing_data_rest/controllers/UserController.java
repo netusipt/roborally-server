@@ -21,4 +21,10 @@ public class UserController {
         return userService.searchUsers(name);
     }
 
+    // Assignment 7c: POST endpoint for signing up a new user
+    @PostMapping(value = "", consumes = "application/json", produces = "application/json")
+    public User signUp(@RequestBody User user) {
+        return userService.signUp(user);
+    }
+
 }

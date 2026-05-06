@@ -24,6 +24,14 @@ public class Game {
 
     private int maxPlayers;
 
+    @ManyToOne
+    @JoinColumn(name = "owner_user_id")
+    private User owner;
+
+    // Assignment 7e: lifecycle state of the game (SIGNUP / ACTIVE)
+    @Enumerated(EnumType.STRING)
+    private GameState state = GameState.SIGNUP;
+
     // TODO There could be more attributes here, ie.
     //      in which state is the sign up for the game, did
     //      the game started or finish (after the game started
@@ -32,6 +40,14 @@ public class Game {
 
     @OneToMany(mappedBy="game")
     private List<Player> players;
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 
     public long getUid() {
         return uid;
@@ -72,6 +88,14 @@ public class Game {
 
     public void setPlayers(List<Player> players) {
         this.players = players;
+    }
+
+    public GameState getState() {
+        return state;
+    }
+
+    public void setState(GameState state) {
+        this.state = state;
     }
 
 }
